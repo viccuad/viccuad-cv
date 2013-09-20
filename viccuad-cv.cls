@@ -13,7 +13,7 @@
 % This work consists of the files viccuad-cv.cls and creationdate.lua 
 %
 %
-% Based on the aesthetics of Alejandro Friggeri CV found at
+% Based on the aesthetics of Adrien Friggeri CV found at
 % https://github.com/afriggeri/CV
 %
 % Although the aesthetics are quite similar, it is done in a very different way:
