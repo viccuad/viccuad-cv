@@ -4,7 +4,7 @@ viccuad-cv
 
 XeLaTeX CV class with flexible layout. Fork me!
 
-![example.png](file:///home/vic/code/viccuad-cv/example.png)
+![example.png](https://github.com/viccuad/viccuad-cv/raw/master/example.png)
 
 Based on the aesthetics of Alejandro Friggeri CV found at
 [https://github.com/afriggeri/CV](https://github.com/afriggeri/CV)
