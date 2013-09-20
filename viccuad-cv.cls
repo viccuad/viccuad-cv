@@ -2,6 +2,8 @@
 %
 % Copyright (C) 2013  Víctor Cuadrado Juan 
 %
+% In addition of the LaTeX Project Public License, this work CANNOT be used for a commercial use. 
+%
 % This work may be distributed and/or modified under the
 % conditions of the LaTeX Project Public License, either version 1.3
 % of this license or (at your option) any later version.
