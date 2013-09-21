@@ -4,7 +4,7 @@ viccuad-cv
 
 XeLaTeX CV class with flexible layout. Fork me!
 
-![example_scaled.png](file:///home/vic/code/viccuad-cv/viccuad-cv/example_scaled.png)
+![example_scaled.png](https://github.com/viccuad/viccuad-cv/raw/master/example_scaled.png)
 
 Based on the aesthetics of Adrien Friggeri CV found at
 [https://github.com/afriggeri/CV](https://github.com/afriggeri/CV)
@@ -52,6 +52,8 @@ Version 1.0
 ## License
 
 Copyright(C) 2013  Víctor Cuadrado Juan 
+
+In addition of the LaTeX Project Public License, this work CANNOT be used for a commercial use. 
 
 This work may be distributed and/or modified under the
 conditions of the LaTeX Project Public License, either version 1.3
