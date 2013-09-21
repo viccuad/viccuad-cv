@@ -181,8 +181,8 @@ io.output("creationdate.timestamp"):write(os.date("\\edef\\tempa\{\\string D:%Y%
 % widths (a latex warning is issued in that case). If you want to start a new 
 % page, rather than simply move to the next frame, use the command \clearpage.
 
-%\RequirePackage{flowfram}         % no draft option
-\RequirePackage[draft]{flowfram} % draft option
+\RequirePackage{flowfram}         % no draft option
+%\RequirePackage[draft]{flowfram} % draft option
 \showmarginsfalse                 % don't display margin bounding boxes in draft
 
 
