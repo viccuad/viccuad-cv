@@ -13,7 +13,6 @@
     <![endif]-->
   </head>
   <body>
-    <a href="https://github.com/viccuad/viccuad-cv/"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"></a>
     <div class="wrapper">
       <header>
         <h1>Viccuad-cv</h1>
@@ -29,9 +28,31 @@
         </ul>
       </header>
       <section>
-        <p><img src="https://github.com/viccuad/viccuad-cv/raw/master/example_scaled.png" alt="example"; border="3">
+        <h1>
+<a name="viccuad-cv" class="anchor" href="#viccuad-cv"><span class="octicon octicon-link"></span></a>viccuad-cv</h1>
 
-<h2>
+<p>XeLaTeX CV class with flexible layout. Fork me!</p>
+
+<p><img src="https://github.com/viccuad/viccuad-cv/raw/master/example_scaled.png" alt="example_scaled.png"></p>
+
+<p>Based on the aesthetics of Adrien Friggeri CV found at
+<a href="https://github.com/afriggeri/CV">https://github.com/afriggeri/CV</a></p>
+
+<p>Although the aesthetics are quite similar, it is done in a very different way:</p>
+
+<ul>
+<li><p>no usage of TikZ package for placing text. That doesn't allow correct 
+serialization of the text.</p></li>
+<li><p>usage of Flowfram package to set the layout of the CV. This allows for having a very flexible layout with multiple frames.</p></li>
+</ul><p>The most relevant changes from his work are:</p>
+
+<ul>
+<li><p>CV now is completely serializable.</p></li>
+<li><p>the text flow follows the given frames, and spans to additional pages if 
+necessary. </p></li>
+<li><p>added automatic \pdfcreationdate population. It works in xelatex 
+or pdflatex.</p></li>
+</ul><h2>
 <a name="features" class="anchor" href="#features"><span class="octicon octicon-link"></span></a>Features</h2>
 
 <ul>
@@ -43,9 +64,29 @@
 <li>Correct A4paper layout.</li>
 <li>Custom \section and \subsection. new \entrylistdated and \entrylist environments.</li>
 </ul><h2>
+<a name="flow" class="anchor" href="#flow"><span class="octicon octicon-link"></span></a>Flow</h2>
+
+<p>The text flow inside of the CV can be seen in flow.png.</p>
+
+<h2>
+<a name="examples" class="anchor" href="#examples"><span class="octicon octicon-link"></span></a>Examples</h2>
+
+<ul>
+<li>Of an empty draft: example-drafton.tex &amp; example-drafton.pdf</li>
+<li>Of a complete CV: example.tex &amp; example.pdf</li>
+</ul><h2>
+<a name="revisions" class="anchor" href="#revisions"><span class="octicon octicon-link"></span></a>Revisions</h2>
+
+<p>Version 1.0</p>
+
+<ul>
+<li>Initial version</li>
+</ul><h2>
 <a name="license" class="anchor" href="#license"><span class="octicon octicon-link"></span></a>License</h2>
 
 <p>Copyright(C) 2013  Víctor Cuadrado Juan </p>
+
+<p>In addition of the LaTeX Project Public License, this work CANNOT be used for a commercial use. </p>
 
 <p>This work may be distributed and/or modified under the
 conditions of the LaTeX Project Public License, either version 1.3
