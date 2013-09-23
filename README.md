@@ -53,7 +53,7 @@ Version 1.1
  * Code cleanup 
  * Suppressed annoying warning: "File `creationdate.lua' already exists", that 
    happens if you compile more than one time
- * 
+ * Added \aside command, to have a cleaner .tex file.
 
 
 ## License

@@ -233,6 +233,15 @@ io.output("creationdate.timestamp"):write(os.date("\\edef\\tempa\{\\string D:%Y%
     \end{staticcontents*}
 }
 
+% aside 
+\newcommand{\aside}[1]{%
+\begin{flushright}
+    #1
+\end{flushright}
+\framebreak
+}
+
+
 % entrylistdated
 \setlength{\tabcolsep}{0pt}
 \newenvironment{entrylistdated}{%
