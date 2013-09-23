@@ -50,7 +50,10 @@ Version 1.0
 
 Version 1.1
 
- * Code cleanup
+ * Code cleanup 
+ * Suppressed annoying warning: "File `creationdate.lua' already exists", that 
+   happens if you compile more than one time
+ * 
 
 
 ## License

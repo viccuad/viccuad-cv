@@ -81,6 +81,10 @@
 %                                                                        ! 
 %
 
+% Silence silly warning of creationdate.lua present, if not first time compiling
+\RequirePackage{silence}    
+\WarningFilter{latex}{File `creationdate.lua' already exists on the system}
+
 \begin{filecontents*}{creationdate.lua}
 os.remove("creationdate.timestamp")
 io.output("creationdate.timestamp"):write(os.date("\\edef\\tempa\{\\string D:%Y%m%d%H%M%S\}\n\\def\\tempb\{%z\}"))
