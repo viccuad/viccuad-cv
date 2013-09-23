@@ -15,20 +15,17 @@
 % This work consists of the files viccuad-cv.cls and creationdate.lua 
 %
 %
-% Based on the aesthetics of Adrien Friggeri CV found at
-% https://github.com/afriggeri/CV
-%
-% Although the aesthetics are quite similar, it is done in a very different way:
-% - no usage of TikZ package for placing text. That doesn't allow correct 
-%   serialization of the text.
-% - usage of Flowfram package, and it's frames, to set the layout of the CV.
-%
-% The most relevant changes from his work are:
-% - CV now is completely serializable
-% - the text flow follows the given frames, and spans to aditional pages if 
-%   neccesary. 
-% - added automatic \pdfcreationdate population. It works in xelatex 
-%   or pdflatex.
+% Features: 
+% - Flexible layout, thanks to Flowfram.
+% - Correct serialization of text, thanks to Flowfram.
+% - Automatic flow of text, thanks to Flowfram. Text flow follows the given frames,
+%   and spans to additional pages if neccesary.
+% - XeLaTeX usage.
+% - Automatic \pdfcreationdate population in XeLaTeX (there is no way to get 
+%   current modification date inside XeLaTeX, this fixes it).
+% - Correct A4paper layout.
+% - Custom \section and \subsection. new \entrylistdated and \entrylist environments.
+
  
 
 \NeedsTeXFormat{LaTeX2e}
@@ -43,43 +40,10 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% COLORS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \RequirePackage{xcolor}
-
-\definecolor{white}{RGB}{255,255,255}
-
-\definecolor{darkgray}{HTML}{333333}
-\definecolor{gray}{HTML}{4D4D4D}
 \definecolor{lightgray}{HTML}{000000}
-\definecolor{lightgray_star}{HTML}{C0C0C0}
-
-\definecolor{green}{HTML}{C2E15F}
-\definecolor{orange}{HTML}{FDA333}
-\definecolor{purple}{HTML}{D3A4F9}
-\definecolor{red}{HTML}{FB4485}
-\definecolor{blue}{HTML}{6CE0F1}
-
-\ifdefined\@cv@color
-  \colorlet{green}{green}
-  \colorlet{orange}{orange}
-  \colorlet{purple}{purple}
-  \colorlet{red}{red}
-  \colorlet{blue}{blue}
-  \colorlet{fillheader}{grey}
-  \colorlet{headertext}{white}
-  \colorlet{sectioncolor}{black}
-  \colorlet{textcolor}{black}
-\else
-  \colorlet{green}{black}
-  \colorlet{orange}{black}
-  \colorlet{purple}{black}
-  \colorlet{red}{black}
-  \colorlet{blue}{black}
-  \colorlet{fillheader}{white}
-  \colorlet{headertext}{black}
-  \colorlet{sectioncolor}{black}
-  \colorlet{textcolor}{black}
-\fi
-
-
+\colorlet{headertext}{black}
+\colorlet{sectioncolor}{black}
+\colorlet{textcolor}{black}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% FONTS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % access fonts by file name in case they aren't installed system-wide
 % warning: load before flowfram!
@@ -88,12 +52,12 @@
 \RequirePackage[math-style=TeX,vargreek-shape=unicode]{unicode-math}
 \setmathfont{xits-math.otf}
 
-\newfontfamily\bodyfont[]{HelveticaNeue}
-\newfontfamily\thinfont[]{HelveticaNeue-UltraLight}  
-\newfontfamily\headingfont[]{HelveticaNeue-CondensedBold} 
+\newfontfamily\surnamefont[]{HelveticaNeue}
+\newfontfamily\namefont[]{HelveticaNeue-UltraLight}  
+\newfontfamily\sectionfont[]{HelveticaNeue-CondensedBold} 
 
 \defaultfontfeatures{Mapping=tex-text} % To support LaTeX quoting 
-\setmainfont[Mapping=tex-text, Color=textcolor]{HelveticaNeue-Light} 
+\setmainfont[Mapping=tex-text, Color=textcolor]{HelveticaNeue-Light}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  MISCELANEA %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -115,7 +79,8 @@
 %                                                                        !!!!
 %                                                                        !!  
 %                                                                        ! 
-%                                                                        O
+%
+
 \begin{filecontents*}{creationdate.lua}
 os.remove("creationdate.timestamp")
 io.output("creationdate.timestamp"):write(os.date("\\edef\\tempa\{\\string D:%Y%m%d%H%M%S\}\n\\def\\tempb\{%z\}"))
@@ -183,9 +148,9 @@ io.output("creationdate.timestamp"):write(os.date("\\edef\\tempa\{\\string D:%Y%
 % widths (a latex warning is issued in that case). If you want to start a new 
 % page, rather than simply move to the next frame, use the command \clearpage.
 
-\RequirePackage{flowfram}         % no draft option
-%\RequirePackage[draft]{flowfram} % draft option
-\showmarginsfalse                 % don't display margin bounding boxes in draft
+\RequirePackage{flowfram}           % no draft option
+%\RequirePackage[draft]{flowfram}   % draft option
+\showmarginsfalse                   % don't display margin bounding boxes in draft
 
 
 \newlength\rightX                   % right frame coord
@@ -212,22 +177,19 @@ io.output("creationdate.timestamp"):write(os.date("\\edef\\tempa\{\\string D:%Y%
 \newstaticframe[>0]{\textwidth}{0.05\textheight}{0pt}{-0.05\textheight}[footer]
 
 % rest of the text 
-\onecolumn[>1]              % for any text that falls off the last page
-\setcounter{secnumdepth}{0} % the sections get numbered as chapters
+\onecolumn[>1]                      % for any text that falls off the last page
+\setcounter{secnumdepth}{0}         % the sections get numbered as chapters
 \pagestyle{empty}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% SECTION/SUBSECTION %%%%%%%%%%%%%%%%%%%%%%%%%%%
 \RequirePackage{parskip} % dependency
 
-%\RequirePackage[compact]{titlesec}
-%\titleformat{\section}{\LARGE\headingfont\color{sectioncolor}}{\thesection}{|}{}
-
 % section
 \renewcommand{\section}[1]{
   \par\vspace{\parskip}
   {%
-    \LARGE\headingfont\color{sectioncolor}%
+    \LARGE\sectionfont\color{sectioncolor}%
     \@sectioncolor #1%
   }
   \par\vspace{\parskip}
@@ -237,11 +199,9 @@ io.output("creationdate.timestamp"):write(os.date("\\edef\\tempa\{\\string D:%Y%
 \renewcommand{\subsection}[1]{
     \par\vspace{2\parskip}
     {%
-        \large\headingfont\color{sectioncolor}%
+        \large\sectionfont\color{sectioncolor}%
         \@sectioncolor #1\\%
-        %\hspace{0pt}
     }
-    %\par\vspace{0\parskip}
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% FILLER COMMANDS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -252,10 +212,10 @@ io.output("creationdate.timestamp"):write(os.date("\\edef\\tempa\{\\string D:%Y%
     \begin{staticcontents*}{header}
         \begin{center}   
             \fontsize{40pt}{72pt}\color{headertext}
-            \thinfont#1\bodyfont#2
+            \namefont#1\surnamefont#2
             \fontsize{16pt}{18pt}\color{headertext}%
             \\* %newline
-            \thinfont#3%
+            \namefont#3%
         \end{center}
     \end{staticcontents*}
 }
@@ -276,7 +236,7 @@ io.output("creationdate.timestamp"):write(os.date("\\edef\\tempa\{\\string D:%Y%
 }{%
   \end{tabular*}
 }
-\renewcommand{\bfseries}{\headingfont\color{sectioncolor}}
+\renewcommand{\bfseries}{\sectionfont\color{sectioncolor}}
 \newcommand{\entrydated}[4]{%
   #1&\parbox[t]{0.85\linewidth}{%
     \textbf{#2}%
@@ -293,14 +253,14 @@ io.output("creationdate.timestamp"):write(os.date("\\edef\\tempa\{\\string D:%Y%
 }{%
   \end{tabular*}
 }
-\renewcommand{\bfseries}{\headingfont\color{sectioncolor}}
+\renewcommand{\bfseries}{\sectionfont\color{sectioncolor}}
 \newcommand{\entry}[3]{%
   \parbox[t]{\linewidth}{%
     \textbf{#1}%
     \hfill%
     {\footnotesize\addfontfeature{Color=lightgray} #2}\\%
     #3\vspace{\parsep}%
-  }\\} 
+  }\\}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

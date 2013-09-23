@@ -48,6 +48,10 @@ Version 1.0
 
  * Initial version
 
+Version 1.1
+
+ * Code cleanup
+
 
 ## License
 
