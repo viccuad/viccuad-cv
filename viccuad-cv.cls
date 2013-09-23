@@ -66,6 +66,7 @@
 \RequirePackage{tabularx}               % sets the width of the table correctly
 \RequirePackage{graphicx}               % for importing photos
 \RequirePackage{dtklogos}               % for \XeTeX logo
+\RequirePackage{parskip}                % fix space between paragraphs
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% EMULATE PDFCREATIONDATE IN XETEX %%%%%%%%%%%%%
@@ -187,8 +188,6 @@ io.output("creationdate.timestamp"):write(os.date("\\edef\\tempa\{\\string D:%Y%
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% SECTION/SUBSECTION %%%%%%%%%%%%%%%%%%%%%%%%%%%
-\RequirePackage{parskip} % dependency
-
 % section
 \renewcommand{\section}[1]{
   \par\vspace{\parskip}
@@ -209,8 +208,6 @@ io.output("creationdate.timestamp"):write(os.date("\\edef\\tempa\{\\string D:%Y%
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% FILLER COMMANDS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\RequirePackage{parskip} % dependency
-
 % header
 \newcommand{\header}[3]{%
     \begin{staticcontents*}{header}
@@ -235,10 +232,10 @@ io.output("creationdate.timestamp"):write(os.date("\\edef\\tempa\{\\string D:%Y%
 
 % aside 
 \newcommand{\aside}[1]{%
-\begin{flushright}
-    #1
-\end{flushright}
-\framebreak
+    \begin{flushright}
+        #1
+    \end{flushright}
+    \framebreak
 }
 
 
