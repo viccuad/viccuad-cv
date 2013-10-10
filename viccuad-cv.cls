@@ -61,7 +61,7 @@
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  MISCELANEA %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\RequirePackage[bookmarks,hidelinks,colorlinks=false, unicode, pdfencoding=auto,
+\RequirePackage[bookmarks,hidelinks, unicode, pdfencoding=auto,
 ]{hyperref}
 \RequirePackage{tabularx}               % sets the width of the table correctly
 \RequirePackage{graphicx}               % for importing photos
@@ -166,56 +166,55 @@ io.output("creationdate.timestamp"):write(os.date("\\edef\\tempa\{\\string D:%Y%
 \newstaticframe[1]{\textwidth}{0.07\textheight}{0pt}{0.95\textheight}[header]
 
 % aside
-\newflowframe[1]{0.2\textwidth}{0.72\textheight}{0pt}{0.18\textheight}[aside]
+\newflowframe[1]{0.2\textwidth}{0.72\textheight}{0pt}{0.20\textheight}[aside]
 
 % main1 frame
 \setlength{\rightW}{0.8\textwidth}
 \addtolength{\rightW}{-\columnsep}  % rightW = main1 width - columnsep
 \setlength{\rightX}{0.2\textwidth}
 \addtolength{\rightX}{\columnsep}   % rightX = aside width + columnsep
-\newflowframe[1]{\rightW}{0.74\textheight}{\rightX}{0.18\textheight}[main1]
+\newflowframe[1]{\rightW}{0.74\textheight}{\rightX}{0.20\textheight}[main1]
 
 % main2 frame
-\newflowframe[1]{\textwidth}{0.18\textheight}{0pt}{0pt}[main2]
+\newflowframe[1]{\textwidth}{0.20\textheight}{0pt}{0pt}[main2]
 
 % footer frame
 \newstaticframe[>0]{\textwidth}{0.05\textheight}{0pt}{-0.05\textheight}[footer]
 
 % rest of the text 
 \onecolumn[>1]                      % for any text that falls off the last page
-\setcounter{secnumdepth}{0}         % the sections get numbered as chapters
 \pagestyle{empty}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% SECTION/SUBSECTION %%%%%%%%%%%%%%%%%%%%%%%%%%%
+\RequirePackage{titlesec}
+\setcounter{secnumdepth}{0} % unnumbered sections,but included in toc and headers
+
+\newcommand*{\justifyheading}{\raggedleft}
+
 % section
-\renewcommand{\section}[1]{
-  \par\vspace{\parskip}
-  {%
-    \LARGE\sectionfont\color{sectioncolor}%
-    \@sectioncolor #1%
-  }
-  \par\vspace{\parskip}
-}
+\titleformat{\section}
+{\Large\sectionfont\color{sectioncolor}}
+{\thesection}{0pt}{}
+\titlespacing{\section}{0pt}{0pt}{-1.0\parskip}
 
 % subsection
-\renewcommand{\subsection}[1]{
-    \par\vspace{2\parskip}
-    {%
-        \large\sectionfont\color{sectioncolor}%
-        \@sectioncolor #1\\%
-    }
-}
+\titleformat{\subsection}
+{\large\sectionfont\color{sectioncolor}\justifyheading}
+{\thesubsection}{0pt}{}
+\titlespacing{\subsection}{0pt}{0pt}{-1.0\parskip}
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% FILLER COMMANDS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % header
 \newcommand{\header}[3]{%
     \begin{staticcontents*}{header}
         \begin{center}   
-            \fontsize{40pt}{72pt}\color{headertext}
+            \fontsize{20pt}{20pt}\color{headertext}
             \namefont#1\surnamefont#2
-            \fontsize{16pt}{18pt}\color{headertext}%
-            \\* %newline
+            \fontsize{14pt}{16pt}\color{headertext}%
+            %\\* %newline
+            \    %space separator
             \namefont#3%
         \end{center}
     \end{staticcontents*}
@@ -232,9 +231,7 @@ io.output("creationdate.timestamp"):write(os.date("\\edef\\tempa\{\\string D:%Y%
 
 % aside 
 \newcommand{\aside}[1]{%
-    \begin{flushright}
-        #1
-    \end{flushright}
+    {\raggedleft{}#1}
     \framebreak
 }
 

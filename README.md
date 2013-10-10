@@ -57,6 +57,11 @@ Version 1.1
  * Changed order parskip package is declared. This removes warning "Command 
    \@starttoc  has changed."
 
+Version 1.2
+
+ * Reduced name size
+ * Reduced \section and \subsection size and spacing
+ * Changed \section and \subsection definition: now it uses titlesec package. This fixes issue #1
 
 ## License
 
