@@ -42,6 +42,8 @@ The text flow inside of the CV can be seen in flow.png.
  * Of an empty draft: example-drafton.tex & example-drafton.pdf
  * Of a complete CV: example.tex & example.pdf
 
+## Downloads
+Right here on Github's [releases](https://github.com/viccuad/viccuad-cv/releases).
 
 ## Revisions
 Version 1.0
