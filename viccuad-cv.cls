@@ -165,8 +165,10 @@ io.output("creationdate.timestamp"):write(os.date("\\edef\\tempa\{\\string D:%Y%
 % header
 \newstaticframe[1]{\textwidth}{0.07\textheight}{0pt}{0.95\textheight}[header]
 
-% aside
+% aside (without photo)
 \newflowframe[1]{0.2\textwidth}{0.72\textheight}{0pt}{0.20\textheight}[aside]
+% aside (with photo)
+% \newflowframe[1]{0.2\textwidth}{0.74\textheight}{0pt}{0.20\textheight}[aside]
 
 % main1 frame
 \setlength{\rightW}{0.8\textwidth}
