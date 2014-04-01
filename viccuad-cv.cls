@@ -1,8 +1,8 @@
-% viccuad-cv.cls 
+% viccuad-cv.cls
 %
-% Copyright (C) 2013  Víctor Cuadrado Juan 
+% Copyright (C) 2013  Víctor Cuadrado Juan
 %
-% In addition of the LaTeX Project Public License, this work CANNOT be used for a commercial use. 
+% In addition of the LaTeX Project Public License, this work CANNOT be used for a commercial use.
 %
 % This work may be distributed and/or modified under the
 % conditions of the LaTeX Project Public License, either version 1.3
@@ -12,21 +12,21 @@
 % and version 1.3 or later is part of all distributions of LaTeX
 % version 2005/12/01 or later.
 %
-% This work consists of the files viccuad-cv.cls and creationdate.lua 
+% This work consists of the files viccuad-cv.cls and creationdate.lua
 %
 %
-% Features: 
+% Features:
 % - Flexible layout, thanks to Flowfram.
 % - Correct serialization of text, thanks to Flowfram.
 % - Automatic flow of text, thanks to Flowfram. Text flow follows the given frames,
 %   and spans to additional pages if neccesary.
 % - XeLaTeX usage.
-% - Automatic \pdfcreationdate population in XeLaTeX (there is no way to get 
+% - Automatic \pdfcreationdate population in XeLaTeX (there is no way to get
 %   current modification date inside XeLaTeX, this fixes it).
 % - Correct A4paper layout.
 % - Custom \section and \subsection. new \entrylistdated and \entrylist environments.
 
- 
+
 
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{viccuad-cv}[2013/09/20 Multiple frames CV class]
@@ -53,10 +53,10 @@
 \setmathfont{xits-math.otf}
 
 \newfontfamily\surnamefont[]{HelveticaNeue}
-\newfontfamily\namefont[]{HelveticaNeue-UltraLight}  
-\newfontfamily\sectionfont[]{HelveticaNeue-CondensedBold} 
+\newfontfamily\namefont[]{HelveticaNeue-UltraLight}
+\newfontfamily\sectionfont[]{HelveticaNeue-CondensedBold}
 
-\defaultfontfeatures{Mapping=tex-text} % To support LaTeX quoting 
+\defaultfontfeatures{Mapping=tex-text} % To support LaTeX quoting
 \setmainfont[Mapping=tex-text, Color=textcolor]{HelveticaNeue-Light}
 
 
@@ -72,18 +72,18 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% EMULATE PDFCREATIONDATE IN XETEX %%%%%%%%%%%%%
 %http://tex.stackexchange.com/questions/41889/what-is-the-xetex-equivalent-of-pdfcreationdate
 %
-% if using xetex, there is no \pdfcreationdate. This creates a lua script to 
+% if using xetex, there is no \pdfcreationdate. This creates a lua script to
 % fill \pdfcreationdate
 %                                                                         !!!
 %                 NEEDS TO BE COMPILED WITH --shell-escape               !!!!!
 %                 NEEDS creationdate.lua with execution permissions      !!!!!
 %                                                                        !!!!
-%                                                                        !!  
-%                                                                        ! 
+%                                                                        !!
+%                                                                        !
 %
 
 % Silence silly warning of creationdate.lua present, if not first time compiling
-\RequirePackage{silence}    
+\RequirePackage{silence}
 \WarningFilter{latex}{File `creationdate.lua' already exists on the system}
 
 \begin{filecontents*}{creationdate.lua}
@@ -107,50 +107,50 @@ io.output("creationdate.timestamp"):write(os.date("\\edef\\tempa\{\\string D:%Y%
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% FLOWFRAM %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% 
+%
 % This class uses Flowfram: by the use of frames, you can create a layout
-% that does not conform to the standard, and also has the contents of the 
+% that does not conform to the standard, and also has the contents of the
 % document flowing correctly on it. A little extract from flowfram docs:
-% 
-% TYPES OF FRAMES 
+%
+% TYPES OF FRAMES
 % - Flow frames: the content will flow from one frame to other. -
-% Static frames: context neither flows into nor outo of. The contents will 
-% remain the same on each page until explicitly changed. 
+% Static frames: context neither flows into nor outo of. The contents will
+% remain the same on each page until explicitly changed.
 % - Dynamic frames: similar to
 % static frames, but content is re-typeset on each page.
-% 
-% FRAME ATTRIBUTES 
-% x-coordinate, y-coordinate, width, height, border, offset, bordercolor, 
+%
+% FRAME ATTRIBUTES
+% x-coordinate, y-coordinate, width, height, border, offset, bordercolor,
 % textcolor, pages, margin, clear, style.
-% 
+%
 %       ___width___             y
 %  	   [           ]            ^
 %      [   FRAME   ] height     |
-%      [___________]            .---> x	
+%      [___________]            .---> x
 %
 %
 % FRAME STACKING ORDER
 % 1º static frames, 2º flow frames, 3º dynamic frames.4º boxes if in draft mode.
-% 
+%
 % PREMATURELY ENDING A FLOW FRAME
 % - using standard latex page breaking commands
 % - \framebreak: resets \hsize if paragraph spans 2 flow frames of diff widths.
 % - \finishthispage to start a new page instead of going to next frame.
-% 
-% FLOATS (figures & tables) 
+%
+% FLOATS (figures & tables)
 % Can only go in flow frames. Flowfram provides
 % staticfigure and statictable environments that can be used in static and
-%  dynamic frames. They are fixed in place, so they don't take an optional 
+%  dynamic frames. They are fixed in place, so they don't take an optional
 % placement specifier.
 %
 % DEFINING FRAMES
 %     \newflowframe[ page list ]{ width }{ height }{ x }{ y }[ label ]
 %
 % PREMATURELY ENDING A FLOWFRAME
-% You can force text to move immediately to the next deﬁned ﬂow frame using one 
+% You can force text to move immediately to the next deﬁned ﬂow frame using one
 % of the commands: \newpage, \pagebreak or \framebreak
-% \framebreak is required when a paragraph spans two ﬂow frames of different 
-% widths (a latex warning is issued in that case). If you want to start a new 
+% \framebreak is required when a paragraph spans two ﬂow frames of different
+% widths (a latex warning is issued in that case). If you want to start a new
 % page, rather than simply move to the next frame, use the command \clearpage.
 
 \RequirePackage{flowfram}           % no draft option
@@ -161,7 +161,7 @@ io.output("creationdate.timestamp"):write(os.date("\\edef\\tempa\{\\string D:%Y%
 \newlength\rightX                   % right frame coord
 \newlength\rightW                   % right frame width
 \setlength{\columnsep}{\leftmargin} % columnsep
- 
+
 % header
 \newstaticframe[1]{\textwidth}{0.07\textheight}{0pt}{0.95\textheight}[header]
 
@@ -183,7 +183,7 @@ io.output("creationdate.timestamp"):write(os.date("\\edef\\tempa\{\\string D:%Y%
 % footer frame
 \newstaticframe[>0]{\textwidth}{0.05\textheight}{0pt}{-0.05\textheight}[footer]
 
-% rest of the text 
+% rest of the text
 \onecolumn[>1]                      % for any text that falls off the last page
 \pagestyle{empty}
 
@@ -211,7 +211,7 @@ io.output("creationdate.timestamp"):write(os.date("\\edef\\tempa\{\\string D:%Y%
 % header
 \newcommand{\header}[3]{%
     \begin{staticcontents*}{header}
-        \begin{center}   
+        \begin{center}
             \fontsize{20pt}{20pt}\color{headertext}
             \namefont#1\surnamefont#2
             \fontsize{14pt}{16pt}\color{headertext}%
@@ -231,7 +231,7 @@ io.output("creationdate.timestamp"):write(os.date("\\edef\\tempa\{\\string D:%Y%
     \end{staticcontents*}
 }
 
-% aside 
+% aside
 \newcommand{\aside}[1]{%
     {\raggedleft{}#1}
     \framebreak
