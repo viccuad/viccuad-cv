@@ -1,19 +1,125 @@
 \documentclass[]{viccuad-cv}
 \usepackage[english]{babel}
 
-\hypersetup{
-    pdftitle={John Doe resumé},
-    pdfauthor={John Doe},
-    pdfcreator={John Doe},
-    pdfsubject={Resumé},
-    pdfkeywords={PDF,LaTeX,John,Johny,resume,cv}
+\hypersetup{%
+	pdftitle={John Doe resumé},
+	pdfauthor={John Doe},
+	pdfcreator={John Doe},
+	pdfsubject={Resumé},
+	pdfkeywords={PDF,LaTeX,John,Johny,resume,cv}
 }
 
 \begin{document}
 
 
 %%%% HEADER %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\header{Johnathan}{ S. Doe}{sofa tester}
+\header{Johnathan}{S. Doe}{\ sofa tester}%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%% CONTACT ASIDE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\contactaside{%
+	% \rule{2.6cm}{3.2cm}%foto
+	\section{Contact Info}
+		{\footnotesize
+			Johnathan S. Doe \\
+			\url{jdoe@howtotex.com}  \\
+			\url{www.howtotex.com} \\
+			\url{www.blog.com} \\
+			\url{www.twitter.com} \\
+			Meechum Street 3 \\
+			(555) 555--3333%
+		}
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%% MAIN1 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{My sofa days}
+	\begin{description}
+		\item[2010--now]%
+			\infodated{Lorem ipsum dolor sit amet, consectetur adipiscing elit}{Ut eu felis nulla}
+			Cras sollicitudin nulla nec leo
+		\item[2007--2010]%
+			\simpleinfodated{Consectetur adipiscing elit}{Vivamus vel bibendum metus}
+	\end{description}
+
+\section{Futons}
+	\begin{description}
+		\item[Lorem Ipsum]
+				\info{\textbf{Sofaer} mother sofa \& \textbf{Azimuthans} divan like \& \textbf{Esperanto} ottoman}{at Rome}
+			Consectetur adipiscing elit. Vivamus vel bibendum metus.
+		\item[Lorem Ipsum]
+				\info{\textbf{Sofaer} mother sofa \& \textbf{Azimuthans} divan like}{at Vienna}
+			Consectetur adipiscing elit. Vivamus vel bibendum metus.
+		\item[Lorem Ipsum]
+				\info{\textbf{Sofaer} mother sofa}{at Prague}
+			Consectetur adipiscing elit. Vivamus vel bibendum metus.
+		\item[Lorem Ipsum]
+				\simpleinfo{\textbf{Sofaer} mother sofa \& \textbf{Azimuthans} divan like \& \textbf{Esperanto} ottoman}{at Krakow}
+	\end{description}
+
+\section{Chaise longues}
+	\begin{description}
+		\item[Lorem Ipsum]
+			\simpleinfo{Proin rutrum pharetra molestie. Cras sollicitudin nulla nec leo lobortis in tristique purus pretium. Ut eu felis nulla}
+		\item[Lorem Ipsum]
+				\info{\textbf{Sofaer} mother sofa \& \textbf{Azimuthans} divan like}{at Vienna}
+			Consectetur adipiscing elit. Vivamus vel bibendum metus.
+		\item[Lorem Ipsum]
+				\info{\textbf{Sofaer} mother sofa}{at Prague}
+			Consectetur adipiscing elit. Vivamus vel bibendum metus.
+	\end{description}
+
+
+\section{My other sofas}
+	\begin{description}
+		\item[Proin]
+			\info{\href{https://proin.com}{proin.com}}
+			Proin rutrum pharetra molestie. Cras sollicitudin nulla nec leo lobortis in tristique purus pretium. Ut eu felis nulla
+		\item[MSc. Lorem ipsum, Cras sollicitudin]
+			\info{\href{http://loremipsum.com}{lorempisum.com}}
+        \item[MSc. Lorem ipsum, Cras sollicitudino]
+			Nulla nec leo lobortis in tristique purus pretium.
+		\item[Proin]
+			\info{\href{https://proin.com}{proin.com}}
+			Proin rutrum pharetra molestie. Cras sollicitudin nulla nec leo lobortis in tristique purus pretium. Ut eu felis nulla
+		\item[MSc. Lorem ipsum, Cras sollicitudin]
+			\simpleinfo{\href{http://loremipsum.com}{lorempisum.com}}
+        \item[MSc. Lorem ipsum, Cras sollicitudino]
+			Nulla nec leo lobortis in tristique purus pretium.
+	\end{description}
+
+
+\section{Divans}
+\providecommand{\tabularnewline}{\\}
+\setlength{\tabcolsep}{5pt}
+    \begin{tabularx}{\linewidth}{X r | X r | X r | X r}
+       Lorem       &  good & Consectetur       &  good & Sit      &  perfect &  Elit   &  good\tabularnewline%
+       Ipsum    &  very good & Ipsum    &  very good & Ipsum      &  very good & Sit            &  very good\tabularnewline%
+       Lorem     &  very good & Lorem     &  very good & Ipsum      &  almost perfect & Adipiscing               &  quite good\tabularnewline%
+       Elit  &  bad & Adipiscing  &  bad & Elit     &  very good & Sit       &  very good\tabularnewline%
+       Lorem &  good & Lorem &  good & Sit         &  perfect & Elit          &  very good\tabularnewline%
+       Adipiscing  &  good & Elit &  good & IpsumIpsum &  good & Consectetur                  &  almost perfect\tabularnewline%
+    \end{tabularx}
+
+\framebreak%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%% ASIDE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\aside{%
+	\subsection{One thing}
+	}{%
+		Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus vel
+		bibendum metus. Proin rutrum pharetra molestie. Cras sollicitudin nulla nec
+		leo lobortis in tristique purus pretium.
+
+	\subsection{Another Thing}
+		Pellentesque condimentum justo ut ligula feugiat nec facilisis tellus
+		ultricies. Nullam sit amet dictum ipsum. Sed lacus neque, hendrerit eu
+		rhoncus nec, pellentesque vitae sem.
+}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
@@ -22,221 +128,41 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-%%%% ASIDE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\aside{
-    \rule{2.6cm}{3.2cm}%foto
-    \subsection{About}
-        Johnathan S. Doe \\
-        \url{jdoe@howtotex.com}  \\
-        \url{www.howtotex.com} \\
-        (555) 555-3333
-    \subsection{One thing}
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus vel
-    bibendum metus. Proin rutrum pharetra molestie. Cras sollicitudin nulla nec
-    leo lobortis in tristique purus pretium.
-
-    \subsection{Another Thing}
-    Pellentesque condimentum justo ut ligula feugiat nec facilisis tellus
-    ultricies. Nullam sit amet dictum ipsum. Sed lacus neque, hendrerit eu
-    rhoncus nec, pellentesque vitae sem.
-}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-%%%% MAIN1 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{My sofa days}
-    \begin{entrylistdated}
-      \entrydated
-        {2010 - now}
-        {Lorem ipsum dolor sit amet, consectetur adipiscing elit}
-        {Ut eu felis nulla}
-        {Cras sollicitudin nulla nec leo}
-      \entrydated
-        {2007 - 2010}
-        {Consectetur adipiscing elit}
-        {Vivamus vel bibendum metus}
-        {Pharetra molestie}
-      \entrydated
-        {2004 - 2006}
-        {Cras sollicitudin nulla nec leo lobortis}
-        {}
-        {Purus pretium}
-      \entrydated
-        {2004}
-        {Vivamus vel bibendum}
-        {Justo ut ligula feugiat nec facilisis}
-        {}
-    \end{entrylistdated}
-
-
-
-\section{Futons}
-    \begin{tabularx}{\linewidth}{XXr}
-        \textbf{Sofaer} mother sofa & \textbf{Azimuthans} divan like & \textbf{Esperanto} ottoman \tabularnewline
-    \end{tabularx}
-
-
-\section{Chaise longues}
-    \begin{entrylistdated}
-      \entrydated
-        {2010 - now}
-        {Lorem ipsum dolor sit amet, consectetur adipiscing elit}
-        {Ut eu felis nulla}
-        {Cras sollicitudin nulla nec leo}
-      \entrydated
-        {2007 - 2010}
-        {Consectetur adipiscing elit}
-        {Vivamus vel bibendum metus}
-        {Pharetra molestie}
-      \entrydated
-        {2004 - 2006}
-        {Cras sollicitudin nulla nec leo lobortis}
-        {}
-        {Purus pretium}
-      \entrydated
-        {2004}
-        {Vivamus vel bibendum}
-        {Justo ut ligula feugiat nec facilisis}
-        {}
-    \end{entrylistdated}
-
-\section{My other sofas}
-    \begin{entrylist}
-      \entry
-        {Proin}
-        {\href{https://proin.com}{proin.com}}
-        {Proin rutrum pharetra molestie. Cras sollicitudin nulla nec leo lobortis in tristique purus pretium. Ut eu felis nulla}
-      \entry
-        {MSc. Lorem ipsum, Cras sollicitudin}
-        {\href{http://loremipsum.com}{lorempisum.com}}
-        {}
-      \entry
-        {MSc. Lorem ipsum, Cras sollicitudino}
-        {}
-        {Nulla nec leo lobortis in tristique purus pretium.}
-      \entry
-        {Proin}
-        {\href{https://proin.com}{proin.com}}
-        {Proin rutrum pharetra molestie. Cras sollicitudin nulla nec leo lobortis in tristique purus pretium. Ut eu felis nulla}
-      \entry
-        {Proin2}
-        {\href{https://proin2.com}{proin2.com}}
-        {Proin2 rutrum pharetra molestie. Cras sollicitudin nulla nec leo lobortis in tristique purus pretium. Ut eu felis nulla}
-    \end{entrylist}
-
-\framebreak
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-%%%% MAIN2 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Divans}
-\providecommand{\tabularnewline}{\\}
-\setlength{\tabcolsep}{5pt}
-    \begin{tabularx}{\linewidth}{X r | X r | X r | X r}
-       Lorem       &  good & Consectetur       &  good & Sit      &  perfect &  Elit   &  good\tabularnewline
-       Ipsum    &  very good & Ipsum    &  very good & Ipsum      &  very good & Sit            &  very good\tabularnewline
-       Lorem     &  very good & Lorem     &  very good & Ipsum      &  almost perfect & Adipiscing               &  quite good\tabularnewline
-       Elit  &  bad & Adipiscing  &  bad & Elit     &  very good & Sit       &  very good\tabularnewline
-       Lorem &  good & Lorem &  good & Sit         &  perfect & Elit          &  very good\tabularnewline
-       Adipiscing  &  good & Elit &  good & IpsumIpsum &  good & Consectetur                  &  almost perfect\tabularnewline
-    \end{tabularx}
-
-\framebreak
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
 %%%% REST OF PAGES %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\section{Settee}
-    \begin{entrylistdated}
-      \entrydated
-        {2010 - now}
-        {Lorem ipsum dolor sit amet, consectetur adipiscing elit}
-        {Ut eu felis nulla}
-        {Cras sollicitudin nulla nec leo}
-      \entrydated
-        {2007 - 2010}
-        {Consectetur adipiscing elit}
-        {Vivamus vel bibendum metus}
-        {Pharetra molestie}
-      \entrydated
-        {2004 - 2006}
-        {Cras sollicitudin nulla nec leo lobortis}
-        {}
-        {Purus pretium}
-      \entrydated
-        {2004}
-        {Vivamus vel bibendum}
-        {Justo ut ligula feugiat nec facilisis}
-        {}
-    \end{entrylistdated}
-
-
+\framebreak%
+\newpage
 
 \section{Futons}
-    \begin{tabularx}{\linewidth}{XXr}
-        \textbf{Sofaer} mother sofa & \textbf{Azimuthans} divan like & \textbf{Esperanto} ottoman \tabularnewline
-    \end{tabularx}
+	\begin{description}
+		\item[Lorem Ipsum]
+				\info{\textbf{Sofaer} mother sofa \& \textbf{Azimuthans} divan like \& \textbf{Esperanto} ottoman}{at Rome}
+			Consectetur adipiscing elit. Vivamus vel bibendum metus.
+		\item[Lorem Ipsum]
+				\info{\textbf{Sofaer} mother sofa \& \textbf{Azimuthans} divan like}{at Vienna}
+			Consectetur adipiscing elit. Vivamus vel bibendum metus.
+		\item[Lorem Ipsum]
+				\info{\textbf{Sofaer} mother sofa}{at Prague}
+			Consectetur adipiscing elit. Vivamus vel bibendum metus.
+		\item[Lorem Ipsum]
+				\info{\textbf{Sofaer} mother sofa \& \textbf{Azimuthans} divan like \& \textbf{Esperanto} ottoman}{at London}
+			Consectetur adipiscing elit. Vivamus vel bibendum metus.
+		\item[Lorem Ipsum]
+				\info{\textbf{Sofaer} mother sofa \& \textbf{Azimuthans} divan like}{at Copenhagen}
+			Consectetur adipiscing elit. Vivamus vel bibendum metus.
+		\item[Lorem Ipsum]
+				\info{\textbf{Sofaer} mother sofa \& \textbf{Azimuthans} divan like \& \textbf{Esperanto} ottoman}{at Krakow}
+	\end{description}
 
 
 \section{Chaise longues}
-    \begin{entrylistdated}
-      \entrydated
-        {2010 - now}
-        {Lorem ipsum dolor sit amet, consectetur adipiscing elit}
-        {Ut eu felis nulla}
-        {Cras sollicitudin nulla nec leo}
-      \entrydated
-        {2007 - 2010}
-        {Consectetur adipiscing elit}
-        {Vivamus vel bibendum metus}
-        {Pharetra molestie}
-      \entrydated
-        {2004 - 2006}
-        {Cras sollicitudin nulla nec leo lobortis}
-        {}
-        {Purus pretium}
-      \entrydated
-        {2004}
-        {Vivamus vel bibendum}
-        {Justo ut ligula feugiat nec facilisis}
-        {}
-    \end{entrylistdated}
+	\begin{description}
+		\item[Lorem Ipsum]
+			\info{Proin rutrum pharetra molestie. Cras sollicitudin nulla nec leo lobortis in tristique purus pretium. Ut eu felis nulla}
+	\end{description}
 
-\section{My other chaise longes}
-    \begin{entrylist}
-      \entry
-        {Proin}
-        {\href{https://proin.com}{proin.com}}
-        {Proin rutrum pharetra molestie. Cras sollicitudin nulla nec leo lobortis in tristique purus pretium. Ut eu felis nulla}
-      \entry
-        {MSc. Lorem ipsum, Cras sollicitudin}
-        {\href{http://loremipsum.com}{lorempisum.com}}
-        {}
-      \entry
-        {MSc. Lorem ipsum, Cras sollicitudino}
-        {}
-        {Nulla nec leo lobortis in tristique purus pretium.}
-      \entry
-        {Proin}
-        {\href{https://proin.com}{proin.com}}
-        {Proin rutrum pharetra molestie. Cras sollicitudin nulla nec leo lobortis in tristique purus pretium. Ut eu felis nulla}
-      \entry
-        {Proin2}
-        {\href{https://proin2.com}{proin2.com}}
-        {Proin2 rutrum pharetra molestie. Cras sollicitudin nulla nec leo lobortis in tristique purus pretium. Ut eu felis nulla}
-    \end{entrylist}
-
-
-
-
-
-
-
-\framebreak
 
 \section{I love lipsum}
-\lipsum{1-4}
+\lipsum{1-4}%
 
 
 

@@ -1,6 +1,6 @@
 % viccuad-cv.cls
 %
-% Copyright (C) 2013  Víctor Cuadrado Juan
+% Copyright (C) 2014-2016 Víctor Cuadrado Juan
 %
 % In addition of the LaTeX Project Public License, this work CANNOT be used for a commercial use.
 %
@@ -27,7 +27,6 @@
 % - Custom \section and \subsection. new \entrylistdated and \entrylist environments.
 
 
-
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{viccuad-cv}[2013/09/20 Multiple frames CV class]
 %begin body
@@ -41,9 +40,16 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% COLORS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \RequirePackage{xcolor}
 \definecolor{lightgray}{HTML}{000000}
+
+\definecolor{lightgray_star}{HTML}{000000}
+\definecolor{darkgray_star}{HTML}{C0C0C0}
+\definecolor{fill_star}{HTML}{000000}
+
 \colorlet{headertext}{black}
 \colorlet{sectioncolor}{black}
 \colorlet{textcolor}{black}
+\definecolor{linkcolor}{HTML}{2A5DB0}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% FONTS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % access fonts by file name in case they aren't installed system-wide
 % warning: load before flowfram!
@@ -52,17 +58,15 @@
 \RequirePackage[math-style=TeX,vargreek-shape=unicode]{unicode-math}
 \setmathfont{xits-math.otf}
 
-\newfontfamily\surnamefont[]{HelveticaNeue}
-\newfontfamily\namefont[]{HelveticaNeue-UltraLight}
-\newfontfamily\sectionfont[]{HelveticaNeue-CondensedBold}
-
+\newfontfamily{\surnamefont}{HelveticaNeue}
+\newfontfamily{\namefont}{HelveticaNeue-UltraLight}
+\newfontfamily{\sectionfont}{HelveticaNeue-CondensedBold}
 \defaultfontfeatures{Mapping=tex-text} % To support LaTeX quoting
 \setmainfont[Mapping=tex-text, Color=textcolor]{HelveticaNeue-Light}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  MISCELANEA %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\RequirePackage[bookmarks,hidelinks, unicode, pdfencoding=auto,
-]{hyperref}
+\RequirePackage[bookmarks,hidelinks, unicode, pdfencoding=auto]{hyperref}
 \RequirePackage{tabularx}               % sets the width of the table correctly
 \RequirePackage{graphicx}               % for importing photos
 \RequirePackage{dtklogos}               % for \XeTeX logo
@@ -81,6 +85,9 @@
 %                                                                        !!
 %                                                                        !
 %
+%                                                                      !!!
+%                                                                      !!!
+%
 
 % Silence silly warning of creationdate.lua present, if not first time compiling
 \RequirePackage{silence}
@@ -96,15 +103,14 @@ io.output("creationdate.timestamp"):write(os.date("\\edef\\tempa\{\\string D:%Y%
 
 \ifdefined\pdfcreationdate\else
 \begingroup
-  \ifnum\shellescape=1
-    \immediate\write18{texlua creationdate.lua}
-    \input{creationdate.timestamp}
-    \def\tempc#1#2#3#4#5{#1#2#3'#4#5'}
-    \edef\tempb{\expandafter\tempc\tempb}
-    \edef\x{\endgroup\def\noexpand\pdfcreationdate{\tempa\tempb}}\x
-  \fi
+	\ifnum\shellescape=1
+		\immediate\write18{texlua creationdate.lua}
+		\input{creationdate.timestamp}
+		\def\tempc#1#2#3#4#5{#1#2#3'#4#5'}
+		\edef\tempb{\expandafter\tempc\tempb}
+		\edef\x{\endgroup\def\noexpand\pdfcreationdate{\tempa\tempb}}\x
+	\fi
 \fi
-
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% FLOWFRAM %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
@@ -113,11 +119,11 @@ io.output("creationdate.timestamp"):write(os.date("\\edef\\tempa\{\\string D:%Y%
 % document flowing correctly on it. A little extract from flowfram docs:
 %
 % TYPES OF FRAMES
-% - Flow frames: the content will flow from one frame to other. -
-% Static frames: context neither flows into nor outo of. The contents will
-% remain the same on each page until explicitly changed.
-% - Dynamic frames: similar to
-% static frames, but content is re-typeset on each page.
+% - Flow frames: the content will flow from one frame to other.
+% - Static frames: context neither flows into nor outo of. The contents will
+%   remain the same on each page until explicitly changed.
+% - Dynamic frames: similar to static frames, but content is re-typeset on
+%   each page.
 %
 % FRAME ATTRIBUTES
 % x-coordinate, y-coordinate, width, height, border, offset, bordercolor,
@@ -154,124 +160,106 @@ io.output("creationdate.timestamp"):write(os.date("\\edef\\tempa\{\\string D:%Y%
 % page, rather than simply move to the next frame, use the command \clearpage.
 
 \RequirePackage{flowfram}           % no draft option
-%\RequirePackage[draft]{flowfram}   % draft option
-\showmarginsfalse                   % don't display margin bounding boxes in draft
+% \RequirePackage[draft]{flowfram}    % draft option
+\showmarginsfalse%                   % don't display margin bounding boxes in draft
 
+\newlength\mainX%                        % main frame X coord
+\newlength\asideX%                       % aside frame X coord
+\newlength\mainwidth%                    % main frame width
+\newlength\asidewidth%                   % aside frame width
 
-\newlength\rightX                   % right frame coord
-\newlength\rightW                   % right frame width
-\setlength{\columnsep}{\leftmargin} % columnsep
+\setlength{\columnsep}{0.75\leftmargin}  % columnsep
 
-% header
-\newstaticframe[1]{\textwidth}{0.07\textheight}{0pt}{0.95\textheight}[header]
+\setlength{\asidewidth}{0.18\textwidth}
 
-% aside (without photo)
-\newflowframe[1]{0.2\textwidth}{0.72\textheight}{0pt}{0.20\textheight}[aside]
-% aside (with photo)
-% \newflowframe[1]{0.2\textwidth}{0.74\textheight}{0pt}{0.20\textheight}[aside]
+% mainwidth = textwidth - columnsep - asidewidth:
+\setlength{\mainwidth}{\textwidth}
+\addtolength{\mainwidth}{-\columnsep}
+\addtolength{\mainwidth}{-\asidewidth}
 
-% main1 frame
-\setlength{\rightW}{0.8\textwidth}
-\addtolength{\rightW}{-\columnsep}  % rightW = main1 width - columnsep
-\setlength{\rightX}{0.2\textwidth}
-\addtolength{\rightX}{\columnsep}   % rightX = aside width + columnsep
-\newflowframe[1]{\rightW}{0.74\textheight}{\rightX}{0.20\textheight}[main1]
+% asideX
+\setlength{\asideX}{\mainwidth}
+\addtolength{\asideX}{\columnsep}
 
-% main2 frame
-\newflowframe[1]{\textwidth}{0.20\textheight}{0pt}{0pt}[main2]
+% mainX = aside width + columnsep:
+\setlength{\mainX}{\asidewidth}
+\addtolength{\mainX}{\columnsep}
 
-% footer frame
-\newstaticframe[>0]{\textwidth}{0.05\textheight}{0pt}{-0.05\textheight}[footer]
+% HEADER
+\newflowframe[1]{\textwidth}{0.05\textheight}{0pt}{0.97\textheight}[header]
+
+% CONTACT ASIDE (not leveled, without photo)
+% \newflowframe[1]{\asidewidth}{0.26\textheight}{\asideX}{0.71\textheight}[contactaside]
+% CONTACT ASIDE (leveled, for photo)
+\newflowframe[1]{\asidewidth}{0.23\textheight}{\asideX}{0.74\textheight}[contactaside]
+
+% MAIN frame
+\newflowframe[1]{\mainwidth}{0.97\textheight}{0pt}{0pt}[main1]
+
+% MAIN2 frame
+%\newflowframe[1]{\textwidth}{0.20\textheight}{0pt}{0pt}[main2]
+
+% ASIDE (leveled, for photo)
+% \newflowframe[1]{\asidewidth}{0.71\textheight}{\asideX}{0pt}[aside]
+% ASIDE (not leveled, without photo)
+\newflowframe[1]{\asidewidth}{0.74\textheight}{\asideX}{0pt}[aside]
+
+% FOOTER frame
+\newflowframe[1]{\textwidth}{0.05\textheight}{0pt}{-0.05\textheight}[footer]
 
 % rest of the text
 \onecolumn[>1]                      % for any text that falls off the last page
-\pagestyle{empty}
-
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% SECTION/SUBSECTION %%%%%%%%%%%%%%%%%%%%%%%%%%%
-\RequirePackage{titlesec}
+\RequirePackage[compact]{titlesec}
 \setcounter{secnumdepth}{0} % unnumbered sections,but included in toc and headers
-
-\newcommand*{\justifyheading}{\raggedleft}
-
-% section
-\titleformat{\section}
-{\Large\sectionfont\color{sectioncolor}}
-{\thesection}{0pt}{}
-\titlespacing{\section}{0pt}{0pt}{-1.0\parskip}
-
-% subsection
-\titleformat{\subsection}
-{\large\sectionfont\color{sectioncolor}\justifyheading}
-{\thesubsection}{0pt}{}
-\titlespacing{\subsection}{0pt}{0pt}{-1.0\parskip}
-
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% FILLER COMMANDS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % header
 \newcommand{\header}[3]{%
-    \begin{staticcontents*}{header}
-        \begin{center}
-            \fontsize{20pt}{20pt}\color{headertext}
-            \namefont#1\surnamefont#2
-            \fontsize{14pt}{16pt}\color{headertext}%
-            %\\* %newline
-            \    %space separator
-            \namefont#3%
-        \end{center}
-    \end{staticcontents*}
+	\begin{center}
+		\fontsize{18pt}{18pt}\color{headertext}%
+		{\namefont#1}{\surnamefont~#2}%
+		\fontsize{14pt}{16pt}\color{headertext}%
+		%\\* %newline
+		% \    %space separator
+		{\namefont#3}%
+	\end{center}
+    \framebreak%
 }
 
 % footer
 \newcommand{\footer}[1]{%
-    \begin{staticcontents*}{footer}
-        \begin{flushright}
-            \tiny{#1}
-        \end{flushright}
-    \end{staticcontents*}
+	\begin{flushright}\tiny{#1}\end{flushright}
+    \framebreak%
 }
 
 % aside
-\newcommand{\aside}[1]{%
-    {\raggedleft{}#1}
-    \framebreak
+\newcommand{\aside}[2]{%
+	#1%for the section
+	\begin{flushleft}#2\end{flushleft}
+    \framebreak%
 }
 
-
-% entrylistdated
-\setlength{\tabcolsep}{0pt}
-\newenvironment{entrylistdated}{%
-  \begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}ll}
-}{%
-  \end{tabular*}
+% contactaside
+\newcommand{\contactaside}[1]{%
+	#1%for the section
+    \framebreak%
 }
-\renewcommand{\bfseries}{\sectionfont\color{sectioncolor}}
-\newcommand{\entrydated}[4]{%
-  #1&\parbox[t]{0.85\linewidth}{%
-    \textbf{#2}%
-    \hfill%
-    {\footnotesize\addfontfeature{Color=lightgray} #3}\\%
-    #4\vspace{\parsep}%
-  }\\}
 
-
-% entrylist
-\setlength{\tabcolsep}{0pt}
-\newenvironment{entrylist}{%
-  \begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}ll}
-}{%
-  \end{tabular*}
-}
-\renewcommand{\bfseries}{\sectionfont\color{sectioncolor}}
-\newcommand{\entry}[3]{%
-  \parbox[t]{\linewidth}{%
-    \textbf{#1}%
-    \hfill%
-    {\footnotesize\addfontfeature{Color=lightgray} #2}\\%
-    #3\vspace{\parsep}%
-  }\\}
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% COMMANDS WITH PANDOC SUPPORT %%%%%%%%%%%%%%%%%
+\RequirePackage{enumitem}               % for shaping enumerate, itemize, description
+\setlist[description]{font=\bfseries,leftmargin=0pt}
+\newcommand{\info}[1]{\hfill{\relax}\footnotesize{}#1\normalsize{}~\newline}
+\newcommand{\simpleinfo}[1]{\hfill{\relax}\footnotesize{}#1\normalsize{}}
+\newcommand{\infodated}[2]{{\bfseries#1}\hfill{\relax}\newline#2\hfill{\relax}\newline}
+\newcommand{\simpleinfodated}[2]{{\bfseries#1}\hfill{\relax}\newline#2\hfill{\relax}}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % end body
-\endinput
+
+
+% pandoc:
+% pandoc --filter /usr/share/doc/python-pandocfilters/examples/deflists.py --filter /usr/share/doc/python-pandocfilters/examples/tikz.py -s prueba_enumitem.tex -o prueba.md -t markdown-native_spans-raw_html+hard_line_breaks && vi prueba.md
+% pandoc --filter /usr/share/doc/python-pandocfilters/examples/deflists.py --filter /usr/share/doc/python-pandocfilters/examples/tikz.py -s victor_cuadrado_resume_en_pablito.tex -o prueba.txt -t plain+hard_line_breaks && vi prueba.txt
+% pandoc --filter /usr/share/doc/python-pandocfilters/examples/deflists.py --filter /usr/share/doc/python-pandocfilters/examples/tikz.py -s prueba_enumitem.tex -o prueba.html -t html && xdg-open prueba.html
